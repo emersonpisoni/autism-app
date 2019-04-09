@@ -1,0 +1,12 @@
+.button {
+  /* border: none; */
+  display: flex;
+  text-align: center;
+  margin: 20px;
+  justify-content: center;
+  padding: 5px 20px;
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size:  30px;
+  font-weight: bold;
+  outline: none;
+}
