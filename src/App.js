@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Teste } from './http/dtos/httpclient';
+
+onclick = () => {
+  Teste();
+}
 
 class App extends Component {
   render() {
@@ -17,6 +22,8 @@ class App extends Component {
             target="_blank"
             rel="noopener noreferrer"
           >
+          )
+          <button onClick={onclick()}>executai</button>
             Learn React
           </a>
         </header>
