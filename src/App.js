@@ -2,6 +2,11 @@ import React, { Component, Fragment } from 'react';
 import { Button } from './ui/components'
 import logo from './logo.svg';
 import './App.css';
+import { Teste } from './http/dtos/httpclient';
+
+onclick = () => {
+  Teste();
+}
 
 class App extends Component {
   render() {
