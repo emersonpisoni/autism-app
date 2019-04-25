@@ -1,26 +1,55 @@
-.App {
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
+
+* {
+  box-sizing: border-boxS
+}
+
+html, body{
+  margin: 0
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
   text-align: center;
+  background-color: #61dafb
+}
+
+.app-title {
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 70px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
 }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
   pointer-events: none;
+} 
+
+.bola {
+  width: 100px;
+  border-radius: 50%;
+  height: 100px;
+  background-color: red;
+  position: relative;
+  animation-name: pelota;
+  animation-duration: 2s;
+  animation-iteration-count: infinite
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
+@keyframes pelota {
+  0%   {background-color:red; left:-100px; top: 0; }
+  50% {background-color:green; right: 100px; top: 100px}
+  100% {background-color:green; right: 100px; top: 0}
 }
 
 @keyframes App-logo-spin {

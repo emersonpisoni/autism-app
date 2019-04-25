@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import { Button } from './ui/components'
 import logo from './logo.svg';
 import './App.css';
 import { Teste } from './http/dtos/httpclient';
@@ -10,24 +11,18 @@ onclick = () => {
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-          )
-          <button onClick={onclick()}>executai</button>
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Fragment>
+        <div className="app">
+          <div className="bola" />
+          <div className="app-title">
+            AUTISM APP
+        </div>
+          <div className="menu">
+            <Button title="Jogar"></Button>
+            <Button title="Resultados"></Button>
+          </div>
+        </div>
+      </Fragment>
     );
   }
 }
