@@ -1,12 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Button } from './ui/components'
-import logo from './logo.svg';
 import './App.css';
-import { Teste } from './http/dtos/httpclient';
-
-onclick = () => {
-  Teste();
-}
+import { Animal } from './ui/components/animais/Animal'
 
 class App extends Component {
   render() {
@@ -16,7 +11,12 @@ class App extends Component {
           <div className="bola" />
           <div className="app-title">
             AUTISM APP
-        </div>
+          <Animal
+              name='raposa'
+              width={30}
+            />
+          </div>
+
           <div className="menu">
             <Button title="Jogar"></Button>
             <Button title="Resultados"></Button>
