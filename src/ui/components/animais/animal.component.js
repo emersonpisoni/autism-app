@@ -10,9 +10,17 @@ export const Animal = ({
     const animalStyle = {
         width: width ? `${width}px` : null,
     }
+
+    const handleClick = () =>{
+        console.log(name)
+    }
     return (
-        <div className='Animal' >
-            <img src={choseAnimal(name)} style={animalStyle} />
-        </div>
+        <img
+            src={choseAnimal(name)}
+            alt={name}
+            style={animalStyle}
+            onClick={handleClick}>
+        </img>
+
     );
 }
