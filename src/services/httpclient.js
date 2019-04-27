@@ -10,18 +10,16 @@ export class HttpClient {
         const userChildren = new UserChildren();
 
         userChildren.set("name", object.name);
-        userChildren.set("age", object.age);
+        userChildren.set("age", parseInt(object.age));
         userChildren.set("syndrome", object.syndrome);
         userChildren.set('teaching', object.teaching);
 
         userChildren.save()
             .then((userChildren) => {
-                console.log('New object created with objectId: ' + userChildren.id);
+                console.log('New object created with objectId: ' + userChildren);
+                alert('Cadastro efetuado com sucesso ' + userChildren.name + ', Agora bora de gameplay')
             }, (error) => {
                 console.log('Failed to create new object, with error code: ' + error.message);
             });
     }
-
-
 }
-

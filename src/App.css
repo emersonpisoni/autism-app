@@ -19,37 +19,8 @@ html, body{
   background-color: #61dafb
 }
 
-.app-title {
-  font-family: 'Gloria Hallelujah', cursive;
-  font-size: 70px;
-}
-
-.menu {
-  display: flex;
-  flex-direction: column;
-}
-
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
   pointer-events: none;
 } 
-
-.bola {
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  background: #f7f7f7;
-  border-radius: 50%;
-  z-index: 2; 
-  animation: pelota .5s cubic-bezier(.63,.09,.75,.46)  infinite alternate;
-}
-
-@keyframes pelota {
-  0%, 10% { top: 3em; height: 3em; width: 3em; }
-  15% { height: 3.15em; width: 2.9em; }
-  35% { height: 4em; width: 2.5em; }
-  75% { height: 4em; width: 2.5em; }
-  95% { height: 2em; width: 3.5em; }
-  100% { top: 18em; height: 1em; width: 3em;}
-}

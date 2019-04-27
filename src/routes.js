@@ -4,10 +4,12 @@ import { Home, Cadastro } from './ui/screens'
 
 function AppRouter() {
   return (
-    <Router>
-      <Route path="/" exact component={Home} />
-      <Route path="/cadastro" component={Cadastro} />
-    </Router>
+    <div className="app">
+      <Router>
+        <Route path="/" exact component={Home} />
+        <Route path="/cadastro" component={Cadastro} />
+      </Router>
+    </div>
   )
 }
 
