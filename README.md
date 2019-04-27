@@ -3,9 +3,16 @@
 TODO
 
 ## Parse-Server Dashboard (visualização e edição de dados)
-1. Rode `npm install -g parse-dashboard`
+1. Rode
+ ```console
+npm install -g parse-dashboard
+```
 
-2. Rode: `parse-dashboard --dev --appId myAppId --masterKey myMasterKey --serverURL "https://autism-apis.herokuapp.com/parse" --appName autism-app`
+
+2. Rode: 
+```console
+parse-dashboard --dev --appId myAppId --masterKey myMasterKey --serverURL "https://autism-apis.herokuapp.com/parse" --appName autism-app
+```
 
 3. Abra localhost:4040 para navegar pela dashboard do parse-server
 
