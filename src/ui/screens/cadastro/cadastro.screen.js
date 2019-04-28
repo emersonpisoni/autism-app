@@ -1,34 +1,59 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import { Redirect } from 'react-router'
+import { ButtonLink, Button } from '../../components'
+import { HttpClient } from '../../../services/httpclient'
+import './cadastro.style.css'
 
 export class Cadastro extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {value: ''};
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      name: '',
+      age: '',
+      syndrome: '',
+      teaching: '',
+      redirect: false
+    };
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
+  handleChange = (event) => {
+    const target = event.target
+
+    this.setState({ [target.name]: target.value });
   }
 
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+  handleSubmit = async (event) => {
     event.preventDefault();
+    const userChildrenId = await HttpClient.postUser(this.state)
+
+    userChildrenId && this.setState({ redirect: true })
   }
 
   render() {
+    const { name, age, syndrome, teaching, redirect } = this.state
+
     return (
-      <form onSubmit={this.handleSubmit}>
+      redirect ? <Redirect to='/game' /> :
+      <form className="form" onSubmit={this.handleSubmit}>
         <label>
           Name:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
+          <input type="text" name='name' value={name} onChange={this.handleChange} required />
         </label>
-        <input type="submit" value="Submit" />
-        <Link to="/" >home</Link>
+        <label>
+          Idade:
+          <input type="text" pattern='^[0-9]*$' title='Digite sua idade com números' name='age' value={age} onChange={this.handleChange} required />
+        </label>
+        <label>
+          Síndrome:
+          <input type="text" name='syndrome' value={syndrome} onChange={this.handleChange} required />
+        </label>
+        <label>
+          Escolaridade:
+          <input type="text" name='teaching' value={teaching} onChange={this.handleChange} required />
+        </label>
+        <Button type="submit" value="Submit" title='cadastrar' />
+        <ButtonLink to='/' title='voltar' />
       </form>
     );
   }

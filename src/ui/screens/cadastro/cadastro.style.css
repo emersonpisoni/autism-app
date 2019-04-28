@@ -1,0 +1,23 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    background-color: antiquewhite;
+    font-weight: 700;
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
+.form > label {
+    width: 100%;
+    display: flex;
+    padding: 6px;
+}
+
+.form > label > input {
+    width: 100%;
+    margin: 0 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(204, 204, 204);
+    outline: none;
+    padding: 0 10px
+}
