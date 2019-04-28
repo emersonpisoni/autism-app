@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Home, Cadastro } from './ui/screens'
+import { Home, Cadastro, Game } from './ui/screens'
 
 function AppRouter() {
   return (
@@ -8,6 +8,7 @@ function AppRouter() {
       <Router>
         <Route path="/" exact component={Home} />
         <Route path="/cadastro" component={Cadastro} />
+        <Route path="/game" component={Game} />
       </Router>
     </div>
   )

@@ -19,6 +19,12 @@
     z-index: 2; 
     animation: pelota .5s cubic-bezier(.63,.09,.75,.46)  infinite alternate;
 }
+
+@media (max-width: 440px) {
+  .bola {
+    left: 45%;
+  }
+}
   
 @keyframes pelota {
   0%, 10% { top: -3em; height: 1em; width: 1em; }

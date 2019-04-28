@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router'
 import { ButtonLink, Button } from '../../components'
 import { HttpClient } from '../../../services/httpclient'
 import './cadastro.style.css'
@@ -11,26 +12,29 @@ export class Cadastro extends Component {
       name: '',
       age: '',
       syndrome: '',
-      teaching: ''
+      teaching: '',
+      redirect: false
     };
   }
 
   handleChange = (event) => {
     const target = event.target
-    
+
     this.setState({ [target.name]: target.value });
   }
 
-  handleSubmit = (event) => {    
-    HttpClient.postUser(this.state)
-    
+  handleSubmit = async (event) => {
     event.preventDefault();
+    const userChildrenId = await HttpClient.postUser(this.state)
+
+    userChildrenId && this.setState({ redirect: true })
   }
 
   render() {
-    const { name, age, syndrome, teaching } = this.state
+    const { name, age, syndrome, teaching, redirect } = this.state
 
     return (
+      redirect ? <Redirect to='/game' /> :
       <form className="form" onSubmit={this.handleSubmit}>
         <label>
           Name:

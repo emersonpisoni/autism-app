@@ -14,12 +14,12 @@ export class HttpClient {
         userChildren.set("syndrome", object.syndrome);
         userChildren.set('teaching', object.teaching);
 
-        userChildren.save()
-            .then((userChildren) => {
-                console.log('New object created with objectId: ' + userChildren);
-                alert('Cadastro efetuado com sucesso ' + userChildren.name + ', Agora bora de gameplay')
+        return userChildren.save().then((userChildren) => {
+                console.log('New object created with objectId: ' + userChildren)
+                return userChildren.id
             }, (error) => {
                 console.log('Failed to create new object, with error code: ' + error.message);
             });
     }
 }
+
