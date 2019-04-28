@@ -1,0 +1,36 @@
+.app-title {
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 70px;
+  position: relative;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.bola {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background: #f7f7f7;
+    left: 130px;
+    border-radius: 50%;
+    z-index: 2; 
+    animation: pelota .5s cubic-bezier(.63,.09,.75,.46)  infinite alternate;
+}
+
+@media (max-width: 440px) {
+  .bola {
+    left: 45%;
+  }
+}
+  
+@keyframes pelota {
+  0%, 10% { top: -3em; height: 1em; width: 1em; }
+  15% { height: 1.05em; width: 1em; }
+  35% { height: 1.3em; width: 0.8em; }
+  75% { height: 1.3em; width: 0.8em; }
+  95% { height: 0.6em; width: 1.2em; }
+  100% { top: 0.3em; height: 0.3em; width: 1em;}
+}
