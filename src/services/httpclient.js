@@ -13,6 +13,7 @@ export class HttpClient {
         userChildren.set("age", object.age);
         userChildren.set("syndrome", object.syndrome);
         userChildren.set('teaching', object.teaching);
+        userChildren.set('result', object.result);
 
         userChildren.save()
             .then((userChildren) => {
