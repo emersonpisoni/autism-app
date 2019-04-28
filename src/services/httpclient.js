@@ -22,5 +22,21 @@ export class HttpClient {
                 console.log('Failed to create new object, with error code: ' + error.message);
             });
     }
+
+    static async postResultResponse(object) {
+        const ResultResponse = Parse.Object.extend('resultResponse');
+        const resultResponse = new ResultResponse();
+
+        resultResponse.set("userChildrenId", object.userChildrenId);
+        resultResponse.set("dificuldadeDoAluno", object.dificuldadeDoAluno);
+        resultResponse.set("medidaTomada", object.medidaTomada);
+
+        return resultResponse.save().then((resultResponse) => {
+                console.log('New object created with objectId: ' + resultResponse)
+                return resultResponse.id
+            }, (error) => {
+                console.log('Failed to create new object, with error code: ' + error.message);
+            });
+    }
 }
 
