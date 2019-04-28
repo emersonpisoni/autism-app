@@ -1,0 +1,25 @@
+{
+    "userChildrenId": "AGNkGQKZLZ",
+    "cursiva": {
+        "acertos": [
+            "vaca_2",
+            "urso_1"
+        ],
+        "erros": [
+            "raposa_2",
+            "alce_1",
+            "guaxinim_4"
+        ]
+    },
+    "bastao": {
+        "acertos": [
+            "raposa_2",
+            "alce_1",
+            "guaxinim_4"
+        ],
+        "erros": [
+            "vaca_2",
+            "urso_1"
+        ]
+    }
+}
