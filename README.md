@@ -31,3 +31,5 @@ age: ***Number***,
 syndrome: ***String***,
 
 teaching: ***String***,
+
+result: ***object***,

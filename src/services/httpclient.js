@@ -13,6 +13,7 @@ export class HttpClient {
         userChildren.set("age", parseInt(object.age));
         userChildren.set("syndrome", object.syndrome);
         userChildren.set('teaching', object.teaching);
+        userChildren.set('result', object.result);
 
         return userChildren.save().then((userChildren) => {
                 console.log('New object created with objectId: ' + userChildren)
