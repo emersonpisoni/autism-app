@@ -1,0 +1,14 @@
+.words {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    widows: auto;
+    height: 100px;
+    background-color: #000000c2;
+    color: white;
+    border-radius: 10px;
+    font-size: 70px;
+    font-weight: bold;
+    top: 60px;
+    transition: all 1s;
+}

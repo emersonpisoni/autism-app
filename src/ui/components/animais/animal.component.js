@@ -7,16 +7,13 @@ export const Animal = ({ name, width, ...props }) => {
         width: width ? `${width}px` : null,
     }
 
-    const handleClick = () => {
-        console.log(name)
-    }
-    
     return (
         <img
+            onClick={() => props.onClick(name)}
             src={choseAnimal(name)}
             alt={name}
             style={animalStyle}
-            onClick={handleClick}>
+           >
         </img>
 
     );
