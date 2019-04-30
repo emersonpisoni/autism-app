@@ -8,7 +8,7 @@ export class Home extends Component {
       <Fragment>
           <div className="app-title">
             <div className="bola" />
-              AUTISM APP
+              INSPEC APP
             </div>
           <div className="menu">
             <ButtonLink title="Jogar" to="/cadastro"/>
