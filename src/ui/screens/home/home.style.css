@@ -1,6 +1,10 @@
 .app-title {
   font-family: 'Gloria Hallelujah', cursive;
   font-size: 70px;
+  text-shadow: 2px 2px 7px white, 
+  -2px -2px 7px white,
+  -2px 2px 7px white,
+   2px -2px 7px white;
   position: relative;
 }
 

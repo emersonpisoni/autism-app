@@ -50,14 +50,13 @@ export class Game extends Component {
         const { randomAnimal, isCursive, rodadas } = this.state
 
         return (
-            rodadas > 5 ? this.submitData() :
+            rodadas > 10 ? this.submitData() :
                 <div className='game'>
                     <Words word={randomAnimal} isCursive={isCursive} />
                     <div className='animal'>
                         <Animal onClick={this.verificaClique} name='alce' width={100} />
                         <Animal onClick={this.verificaClique} name='ourico' width={100} />
                         <Animal onClick={this.verificaClique} name='vaca' width={100} />
-                        <Animal onClick={this.verificaClique} name='castor' width={100} />
                         <Animal onClick={this.verificaClique} name='guaxinim' width={100} />
                         <Animal onClick={this.verificaClique} name='urso' width={100} />
                         <Animal onClick={this.verificaClique} name='raposa' width={100} />
