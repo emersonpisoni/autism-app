@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router'
 import { HttpClient } from '../../../services/httpclient'
 import { ButtonLink, Words, Animal } from '../../components'
+import { Result } from '../'
 import { Animals } from '../../utils/animals'
 import './game.style.css'
 import { ResultDto } from '../../dto/resultDto';
@@ -28,7 +28,7 @@ export class Game extends Component {
     }
 
     verificaClique = (clickedAnimal) => {
-        const { randomAnimal, isCursive, acertosBastao, acertosCursiva, errosBastao, errosCursiva, rodadas } = this.state
+        const { randomAnimal, isCursive, acertosBastao, acertosCursiva, errosBastao, errosCursiva } = this.state
 
         if (randomAnimal === clickedAnimal) {
             isCursive ? acertosCursiva.push(randomAnimal) : acertosBastao.push(randomAnimal)
@@ -40,27 +40,16 @@ export class Game extends Component {
     }
 
     submitData = () => {
-        const result = new ResultDto({ ...this.state })
-
-        return this.renderResult(result)
-    }
-
-    renderResult = (result) => {
-        const { result: { bastao, cursiva } } = result
-
-        return (
-            <div className='result' >
-                <text>ACERTOS BASTÃO: {bastao.acertos.length}</text>
-                <text>ERROS BASTÃO: {bastao.erros.length}</text>
-                <text>ACERTOS CURSIVA: {cursiva.acertos.length}</text>
-                <text>ERROS CURSIVA: {cursiva.erros.length}</text>
-            </div>
-        )
+        const result = new ResultDto({ ...this.state, userChildrenId: this.props.location.state.id })
+        console.log(result)
+        HttpClient.putUserChildren(result)
+        
+        return <Result result={result} />
     }
 
     render() {
         const { randomAnimal, isCursive, rodadas } = this.state
-
+        console.log(this.props.location.state.id)
         return (
             rodadas > 5 ? this.submitData() :
                 <div className='game'>

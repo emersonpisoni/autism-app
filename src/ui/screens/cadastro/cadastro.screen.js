@@ -13,7 +13,8 @@ export class Cadastro extends Component {
       age: '',
       syndrome: '',
       teaching: '',
-      redirect: false
+      redirect: false,
+      userChildrenId: ''
     };
   }
 
@@ -27,34 +28,40 @@ export class Cadastro extends Component {
     event.preventDefault();
     const userChildrenId = await HttpClient.postUser(this.state)
 
-    userChildrenId && this.setState({ redirect: true })
+    userChildrenId && this.setState({ redirect: true, userChildrenId })
   }
 
   render() {
-    const { name, age, syndrome, teaching, redirect } = this.state
+    const { name, age, syndrome, teaching, redirect, userChildrenId } = this.state
 
     return (
-      redirect ? <Redirect to='/game' /> :
-      <form className="form" onSubmit={this.handleSubmit}>
-        <label>
-          Name:
+      redirect ?
+        <Redirect to={{
+          pathname: '/game',
+          state: {
+            id: userChildrenId
+          }
+        }} /> :
+        <form className="form" onSubmit={this.handleSubmit}>
+          <label>
+            Name:
           <input type="text" name='name' value={name} onChange={this.handleChange} required />
-        </label>
-        <label>
-          Idade:
+          </label>
+          <label>
+            Idade:
           <input type="text" pattern='^[0-9]*$' title='Digite sua idade com números' name='age' value={age} onChange={this.handleChange} required />
-        </label>
-        <label>
-          Síndrome:
+          </label>
+          <label>
+            Síndrome:
           <input type="text" name='syndrome' value={syndrome} onChange={this.handleChange} required />
-        </label>
-        <label>
-          Escolaridade:
+          </label>
+          <label>
+            Escolaridade:
           <input type="text" name='teaching' value={teaching} onChange={this.handleChange} required />
-        </label>
-        <Button type="submit" value="Submit" title='cadastrar' />
-        <ButtonLink to='/' title='voltar' />
-      </form>
+          </label>
+          <Button type="submit" value="Submit" title='cadastrar' />
+          <ButtonLink to='/' title='voltar' />
+        </form>
     );
   }
 }
