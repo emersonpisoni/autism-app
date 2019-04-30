@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import { HttpClient } from '../../../services/httpclient'
 import { Button } from '../../components'
 import './result.style.css'
@@ -10,8 +11,17 @@ export class Result extends Component {
       dificuldadeDoAluno: [],
       medidaTomada: '',
       isBastao: false,
-      isCursiva: false
+      isCursiva: false,
+      result: null,
+      deveRedirecionarParaCadastro: false
     }
+  }
+
+  getResult = async () => {
+    const resultado = await HttpClient.getResult(this.props.result);
+    console.log(resultado);
+    this.setState({ result: resultado })
+    return resultado;
   }
 
   renderResult = () => {
@@ -53,7 +63,7 @@ export class Result extends Component {
   toggleCursiva = () => {
     this.setState({ isCursiva: !this.state.isCursiva })
   }
-  
+
   handleChange = (event) => {
     const target = event.target
 
@@ -77,34 +87,38 @@ export class Result extends Component {
   renderMedida = () => {
     return (
       <div className='medida' >
-        Qual será a iniciativa para auxiliá-lo ? 
+        Qual será a iniciativa para auxiliá-lo ?
         <input type='text' name='medidaTomada' value={this.state.medidaTomada} onChange={this.handleChange} />
       </div>
     )
   }
 
-  submit = () => {   
+  submit = () => {
     const { medidaTomada, dificuldadeDoAluno, isBastao, isCursiva } = this.state
     const { id } = this.props.result
 
     isBastao && dificuldadeDoAluno.push('bastao')
     isCursiva && dificuldadeDoAluno.push('cursiva')
 
-    console.log(id, medidaTomada, dificuldadeDoAluno);
-    
-
     HttpClient.putUserChildren({ id, medidaTomada, dificuldadeDoAluno })
+
+    this.setState({ deveRedirecionarParaCadastro: true })
   }
 
   render() {
+    console.log(this.state.deveRedirecionarParaCadastro);
+    
     return (
-      <div className='result' >
-        <h1>RESULTADOS</h1>
-        {this.renderResult()}
-        {this.renderDificuldade()}
-        {this.renderMedida()}
-        <Button title='Enviar' onClick={this.submit} />
-      </div>
+      this.state.deveRedirecionarParaCadastro ? <Redirect to='/cadastro' /> :
+      this.state.result ? 
+      <div> tela se tiver dados</div> :
+        <div className='result' >
+          <h1>RESULTADOS</h1>
+          {this.renderResult()}
+          {this.renderDificuldade()}
+          {this.renderMedida()}
+          <Button title='Enviar' onClick={this.submit} />
+        </div>
     )
   }
 }

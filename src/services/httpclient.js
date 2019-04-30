@@ -59,8 +59,7 @@ export class HttpClient {
         const search = query.lessThanOrEqualTo('bastaoErros', countErrosBastao);
         const result = await search.find();
         if (result.length === 0) {
-            console.log('sem registros')
-            return "sem registros";
+            return false;
         } else {
             let medidaTomada = result[0].get('medidaTomada');
             let dificuldadeDoAluno = result[0].get('dificuldadeDoAluno');
