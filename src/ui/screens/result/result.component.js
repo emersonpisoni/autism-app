@@ -1,11 +1,21 @@
 import React, { Component } from 'react'
+import { HttpClient } from '../../../services/httpclient'
+import { Button } from '../../components'
 import './result.style.css'
 
 export class Result extends Component {
+  constructor() {
+    super()
+    this.state = {
+      dificuldadeDoAluno: [],
+      medidaTomada: '',
+      isBastao: false,
+      isCursiva: false
+    }
+  }
 
   renderResult = () => {
     const { result: { bastao, cursiva } } = this.props.result
-    console.log(!!bastao.erros.lenght);
 
     return (
       <div className='content' >
@@ -13,11 +23,11 @@ export class Result extends Component {
           <h2>BASTÃO:</h2>
           <div>
             <h3>ACERTOS: </h3>
-            {!!bastao.acertos.lenght ? bastao.acertos.map(acertos => <div>{acertos}</div>) : 'nenhum'}
+            {!!bastao.acertos.length ? bastao.acertos.map(acertos => <div>{acertos}</div>) : 'nenhum'}
           </div>
           <div>
             <h3>ERROS: </h3>
-            {!!bastao.erros.lenght ? bastao.erros.map(erros => <div>{erros}</div>) : 'nenhum'}
+            {!!bastao.erros.length ? bastao.erros.map(erros => <div>{erros}</div>) : 'nenhum'}
           </div>
         </div>
         <hr />
@@ -25,15 +35,65 @@ export class Result extends Component {
           <h2>CURSIVA:</h2>
           <div>
             <h3>ACERTOS: </h3>
-            {!!cursiva.acertos.lenght ? cursiva.acertos.map(acertos => <div>{acertos}</div>) : 'nenhum'}
+            {!!cursiva.acertos.length ? cursiva.acertos.map(acertos => <div>{acertos}</div>) : 'nenhum'}
           </div>
           <div>
             <h3>ERROS: </h3>
-            {!!cursiva.erros.lenght ? cursiva.erros.map(erros => <div>{erros}</div>) : 'nenhum'}
+            {!!cursiva.erros.length ? cursiva.erros.map(erros => <div>{erros}</div>) : 'nenhum'}
           </div>
         </div>
       </div>
     )
+  }
+
+  toggleBastao = () => {
+    this.setState({ isBastao: !this.state.isBastao })
+  }
+
+  toggleCursiva = () => {
+    this.setState({ isCursiva: !this.state.isCursiva })
+  }
+  
+  handleChange = (event) => {
+    const target = event.target
+
+    this.setState({ [target.name]: target.value });
+  }
+
+  renderDificuldade = () => {
+    return (
+      <div className='dificuldade' >
+        Aonde está a dificuldade da criança?
+        <label>
+          <input type='checkbox' onChange={this.toggleBastao} />BASTÃO
+        </label>
+        <label>
+          <input type='checkbox' onChange={this.toggleCursiva} />CURSIVA
+        </label>
+      </div>
+    )
+  }
+
+  renderMedida = () => {
+    return (
+      <div className='medida' >
+        Qual será a iniciativa para auxiliá-lo ? 
+        <input type='text' name='medidaTomada' value={this.state.medidaTomada} onChange={this.handleChange} />
+      </div>
+    )
+  }
+
+  submit = () => {   
+    const { medidaTomada, dificuldadeDoAluno, isBastao, isCursiva } = this.state
+    const { id } = this.props.result
+
+    isBastao && dificuldadeDoAluno.push('bastao')
+    isCursiva && dificuldadeDoAluno.push('cursiva')
+
+    console.log(id, medidaTomada, dificuldadeDoAluno);
+    
+
+    HttpClient.putUserChildren({ id, medidaTomada, dificuldadeDoAluno })
   }
 
   render() {
@@ -41,6 +101,9 @@ export class Result extends Component {
       <div className='result' >
         <h1>RESULTADOS</h1>
         {this.renderResult()}
+        {this.renderDificuldade()}
+        {this.renderMedida()}
+        <Button title='Enviar' onClick={this.submit} />
       </div>
     )
   }

@@ -1,8 +1,38 @@
 .result {
     display: flex;
-    flex-direction: column
+    flex-direction: column;
+    align-items: center;
 }
 
-.content {
-    background-color: antiquewhite
+h1 {
+    font-size: 40px;
+    text-shadow: 2px 2px 7px white, 
+                -2px -2px 7px white,
+                -2px 2px 7px white,
+                 2px -2px 7px white;
+}
+
+.content, .dificuldade, .medida {
+    background-color: rgba(250, 235, 215, 0.911);
+    display: flex;
+    padding: 10px 0;
+    width: 100%;
+    height: 100%;
+}
+
+.content > div {
+    padding: 20px;
+    flex: 1;
+}
+
+.dificuldade {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.medida {
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
 }

@@ -41,7 +41,7 @@ export class Game extends Component {
 
     submitData = () => {
         const result = new ResultDto({ ...this.state, userChildrenId: this.props.location.state.id })
-        console.log(result)
+
         HttpClient.putUserChildren(result)
         
         return <Result result={result} />
@@ -49,7 +49,7 @@ export class Game extends Component {
 
     render() {
         const { randomAnimal, isCursive, rodadas } = this.state
-        console.log(this.props.location.state.id)
+
         return (
             rodadas > 5 ? this.submitData() :
                 <div className='game'>
