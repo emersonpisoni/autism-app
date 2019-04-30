@@ -16,27 +16,29 @@ export class HttpClient {
         userChildren.set('result', object.result);
 
         return userChildren.save().then((userChildren) => {
-                console.log('New object created with objectId: ' + userChildren)
-                return userChildren.id
-            }, (error) => {
-                console.log('Failed to create new object, with error code: ' + error.message);
-            });
+            console.log('New object created with objectId: ' + userChildren)
+            return userChildren.id
+        }, (error) => {
+            console.log('Failed to create new object, with error code: ' + error.message);
+        });
     }
 
     static async postResultResponse(object) {
-        const ResultResponse = Parse.Object.extend('resultResponse');
-        const resultResponse = new ResultResponse();
+        const UserChildren = Parse.Object.extend('userChildren');
+        const userChildren = new UserChildren();
 
-        resultResponse.set("userChildrenId", object.userChildrenId);
-        resultResponse.set("dificuldadeDoAluno", object.dificuldadeDoAluno);
-        resultResponse.set("medidaTomada", object.medidaTomada);
-
-        return resultResponse.save().then((resultResponse) => {
-                console.log('New object created with objectId: ' + resultResponse)
-                return resultResponse.id
-            }, (error) => {
-                console.log('Failed to create new object, with error code: ' + error.message);
-            });
+        userChildren.set("objectId", object.id);
+        userChildren.set("result", object.result);
+        userChildren.set("dificuldadeDoAluno", object.dificuldadeDoAluno);
+        userChildren.set("medidaTomada", object.medidaTomada);
+        
+        return userChildren.save().then((userChildren) => {
+            console.log(userChildren + "Update")
+            return userChildren.id
+        }, (error) => {
+            console.log('Failed to create new object, with error code: ' + error.message);
+        });
     }
+
 }
 
