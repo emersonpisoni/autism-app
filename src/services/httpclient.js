@@ -5,7 +5,7 @@ Parse.serverURL = 'https://autism-apis.herokuapp.com/parse';
 
 export class HttpClient {
 
-    static async postUser(object) {
+    static postUser(object) {
         const UserChildren = Parse.Object.extend('userChildren');
         const userChildren = new UserChildren();
 
@@ -23,7 +23,7 @@ export class HttpClient {
         });
     }
 
-    static async putUserChildren(object) {
+    static putUserChildren(object) {
         const UserChildren = Parse.Object.extend('userChildren');
         const userChildren = new UserChildren();
 
@@ -35,7 +35,7 @@ export class HttpClient {
             userChildren.set("dificuldadeDoAluno", object.dificuldadeDoAluno);
             userChildren.set("medidaTomada", object.medidaTomada);
         }
-        
+
         return userChildren.save().then((userChildren) => {
             console.log(userChildren + "Update")
             return userChildren.id
