@@ -16,7 +16,9 @@ export class Result extends Component {
       deveRedirecionarParaCadastro: false
     }
   }
-
+  componentWillMount(){
+    this.getResult();
+  }
   getResult = async () => {
     const resultado = await HttpClient.getResult(this.props.result);
     console.log(resultado);
@@ -55,7 +57,9 @@ export class Result extends Component {
       </div>
     )
   }
-
+  componentDidMount(){
+    console.log(this.props)
+  }
   toggleBastao = () => {
     this.setState({ isBastao: !this.state.isBastao })
   }
@@ -100,7 +104,7 @@ export class Result extends Component {
     isBastao && dificuldadeDoAluno.push('bastao')
     isCursiva && dificuldadeDoAluno.push('cursiva')
 
-    HttpClient.putUserChildren({ id, medidaTomada, dificuldadeDoAluno })
+    HttpClient.putUserChildren({ id: this.props.result.id, medidaTomada, dificuldadeDoAluno })
 
     this.setState({ deveRedirecionarParaCadastro: true })
   }

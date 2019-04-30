@@ -29,7 +29,8 @@ export class HttpClient {
 
         userChildren.set("objectId", object.id);
         if (object.result) {
-            userChildren.set("result", object.result);
+            userChildren.set("result", object.result.result);
+            userChildren.set("bastaoErros", object.bastaoErros);
         }
         if (object.dificuldadeDoAluno && object.medidaTomada) {
             userChildren.set("dificuldadeDoAluno", object.dificuldadeDoAluno);
@@ -49,16 +50,17 @@ export class HttpClient {
         const UserChildren = Parse.Object.extend('userChildren');
         const query = new Parse.Query(UserChildren);
 
-        const countErrosBastao = object.result.bastao.erros.lenght; // quantidade erros precisa ser >= que base
-        const countErrosCursiva = object.result.cursiva.erros.lenght //quantidade de erros precisa ser >= que a base
-        const countAcertosBastao = object.result.bastao.acertos.lenght; // quantidade de acertos precisa ser <= que a base
-        const countAcertosCursiva = object.result.cursiva.acertos.lenght; // quantidade de acertos precisa ser <= que a base
+        const countErrosBastao = object.result.bastao.erros.length; // quantidade erros precisa ser >= que base
+        const countErrosCursiva = object.result.cursiva.erros.length //quantidade de erros precisa ser >= que a base
+        const countAcertosBastao = object.result.bastao.acertos.length; // quantidade de acertos precisa ser <= que a base
+        const countAcertosCursiva = object.result.cursiva.acertos.length; // quantidade de acertos precisa ser <= que a base
         const mediaAtual = (countAcertosBastao + countAcertosCursiva) - (countErrosCursiva + countErrosBastao);
-
 
         const search = query.lessThanOrEqualTo('bastaoErros', countErrosBastao);
         const result = await search.find();
+        console.log(result)
         if (result.length === 0) {
+            console.log("deu falso")
             return false;
         } else {
             let medidaTomada = result[0].get('medidaTomada');
@@ -66,12 +68,13 @@ export class HttpClient {
             // console.log("CASO COPIA FIRST" + casoCopia)
             for (let i = 0; i < result.length; i++) {
                 const first = result[i].get('result');
-                const bastaoError = first.result.bastao.erros.length;
-                const bastaoAcertos = first.result.bastao.acertos.length;
-                const cursivaError = first.result.cursiva.erros.length;
-                const cursivaAcerto = first.result.cursiva.acertos.length;
+                console.log("first", first)
+                const bastaoError = first.bastao.erros.length;
+                const bastaoAcertos = first.bastao.acertos.length;
+                const cursivaError = first.cursiva.erros.length;
+                const cursivaAcerto = first.cursiva.acertos.length;
                 const mediacaso = (cursivaAcerto + bastaoAcertos) - (cursivaError + bastaoError);
-                if (mediaAtual <= mediacaso) {
+                if (mediaAtual === mediacaso) {
                     medidaTomada = result[i].get('medidaTomada');
                     dificuldadeDoAluno = result[i].get('dificuldadeDoAluno');
 

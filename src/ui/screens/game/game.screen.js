@@ -19,7 +19,9 @@ export class Game extends Component {
             rodadas: 1
         }
     }
-
+    componentDidMount(){
+        console.log(this.props.location.state.id);
+    }
     getRandomAnimalWword = () => {
         const randomAnimal = Animals[Math.floor(Math.random() * Animals.length)]
         const isCursive = Math.floor(Math.random() * 2)
@@ -41,9 +43,9 @@ export class Game extends Component {
 
     submitData = () => {
         const result = new ResultDto({ ...this.state, userChildrenId: this.props.location.state.id })
+        console.log(this.props.location.state.id);
+        HttpClient.putUserChildren({ id: this.props.location.state.id, bastaoErros: result.result.bastao.erros.length, result })
 
-        HttpClient.putUserChildren(result)
-        
         return <Result result={result} />
     }
 
