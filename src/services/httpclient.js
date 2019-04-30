@@ -23,14 +23,18 @@ export class HttpClient {
         });
     }
 
-    static async postResultResponse(object) {
+    static async putUserChildren(object) {
         const UserChildren = Parse.Object.extend('userChildren');
         const userChildren = new UserChildren();
 
         userChildren.set("objectId", object.id);
-        userChildren.set("result", object.result);
-        userChildren.set("dificuldadeDoAluno", object.dificuldadeDoAluno);
-        userChildren.set("medidaTomada", object.medidaTomada);
+        if (object.result) {
+            userChildren.set("result", object.result);
+        }
+        if (object.dificuldadeDoAluno) {
+            userChildren.set("dificuldadeDoAluno", object.dificuldadeDoAluno);
+            userChildren.set("medidaTomada", object.medidaTomada);
+        }
         
         return userChildren.save().then((userChildren) => {
             console.log(userChildren + "Update")
