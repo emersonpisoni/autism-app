@@ -88,8 +88,8 @@ export class HttpClient {
                 dificuldadeDoAluno: dificuldadeDoAluno || ''
             }
 
-
-            return retorno;
+            return null;
+            // return retorno;
         }
     }
 

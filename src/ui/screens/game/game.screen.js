@@ -19,9 +19,6 @@ export class Game extends Component {
             rodadas: 1
         }
     }
-    componentDidMount(){
-        console.log(this.props.location.state.id);
-    }
     getRandomAnimalWword = () => {
         const randomAnimal = Animals[Math.floor(Math.random() * Animals.length)]
         const isCursive = Math.floor(Math.random() * 2)
