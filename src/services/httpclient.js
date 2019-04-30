@@ -31,7 +31,7 @@ export class HttpClient {
         if (object.result) {
             userChildren.set("result", object.result);
         }
-        if (object.dificuldadeDoAluno) {
+        if (object.dificuldadeDoAluno && object.medidaTomada) {
             userChildren.set("dificuldadeDoAluno", object.dificuldadeDoAluno);
             userChildren.set("medidaTomada", object.medidaTomada);
         }
