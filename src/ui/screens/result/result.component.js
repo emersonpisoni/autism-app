@@ -1,7 +1,22 @@
 import React, { Component } from 'react'
 import './result.style.css'
+import { HttpClient } from '../../../services/httpclient'
+
 
 export class Result extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      result: null,
+    }
+  }
+
+  getResult = async () => {
+    const resultado = await HttpClient.getResult(this.props.result);
+    console.log(resultado);
+    this.setState({ result: resultado })
+    return resultado;
+  }
 
   renderResult = () => {
     const { result: { bastao, cursiva } } = this.props.result
@@ -38,10 +53,14 @@ export class Result extends Component {
 
   render() {
     return (
-      <div className='result' >
-        <h1>RESULTADOS</h1>
-        {this.renderResult()}
-      </div>
+      this.state.result ? <div> tela se tiver dados</div>
+
+        :
+
+        <div className='result' >
+          <h1>RESULTADOS</h1>
+          {this.renderResult()}
+        </div>
     )
   }
 }
